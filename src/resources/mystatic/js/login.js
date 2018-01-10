@@ -27,19 +27,21 @@
         clearErrCss($(".loginform input"));
         // 登录按钮设置
         $("#btnLogin").click(function() {
+            // 登录名不能为空
             var loginId = $("#login-id").val();
             if (loginId == "") {
                 addErrCss($("#login-id").parent());
                 showMsg("用户名不能为空！","error");
                 return;
             }
+            // 密码不能为空
             var password = $("#login-pass").val();
             if (password == "") {
                 addErrCss($("#login-pass").parent());
                 showMsg("密码不能为空！","error");
                 return;
             }
-
+            // 提交登录
             $.ajax({
                 type : config.methodPost,
                 url : config.url.loginUrl,
@@ -63,32 +65,4 @@
             });
         });
     });
-    
-    
-    
-    
 
-//    $(".login-link").click(function() {
-//
-////        $.ajax({
-////            type : "POST",
-////            url : "/workplatform/user/addUser",
-////            data : {
-////                "loginId" : $("#login-id").val(),
-////                "cPassword" : $("#login-pass").val()
-////            },
-////            dataType : "json",
-////            success : function(data) {
-////                if (!data.success) {
-////                    alert(data.msg);
-////                    return;
-////                }
-////            },
-////            error : function(request, info, err) {
-////                alert("info=" + info);
-////            }
-////        });
-////
-//        
-//    });
-      

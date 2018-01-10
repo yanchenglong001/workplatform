@@ -15,8 +15,9 @@ define(['global'],function(global){
             loginUrl:config.dirJsonPath + 'login.json',
             logoutUrl:'login.html',
             indexUrl:'index.html',
-            showUserUrl:'user/user.html',
-            userUrl:'user/user.html'
+            showUserUrl:'user/userlist.html',
+            userUrl:'user/userlist.html',
+            operUserUrl:'user/user.html'
     };
     
     var serverUrl = {
@@ -24,7 +25,8 @@ define(['global'],function(global){
             logoutUrl:'/workplatform/login/logout',
             indexUrl:'/workplatform/index/index',
             showUserUrl:'/workplatform/user/user',
-            userUrl:'/workplatform/user/userlist'
+            userUrl:'/workplatform/user/userlist',
+            operUserUrl:'/workplatform/user/user'
     };
     config.url = config.isDebug ? localUrl:serverUrl;
     

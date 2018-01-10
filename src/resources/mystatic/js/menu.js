@@ -1,13 +1,21 @@
 define(['jquery','config','responsivenav'],
         function($,config,responsivenav){
+            function clearActive(){
+                $(".navbar-nav").children().removeClass("active");
+            }
             var menu = {
                     init:function (){
 //                        $("#btnMenuMain").attr("href",config.url.indexUrl);
 //                        $("#btnMenuUser").attr("href",config.url.userUrl);
+                        
                         $("#btnMenuMain").click(function(){
+                            clearActive();
+                            $(this).parent().addClass("active");
                             $("#mainFrame").attr("src","");
                         });
                         $("#btnMenuUser").click(function(){
+                            clearActive();
+                            $(this).parent().parent().addClass("active");
                             $("#mainFrame").attr("src",config.url.userUrl);
                         });
 //                        var navigation = responsiveNav("#nav", { // Selector: The ID of the wrapper

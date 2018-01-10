@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.DisabledAccountException;
 import org.apache.shiro.authc.ExcessiveAttemptsException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.ycl.bean.manager.user.TUser;
 import com.ycl.common.cache.UserInfoList;
 import com.ycl.common.controller.BaseController;
+import com.ycl.common.exception.UserStateException;
 import com.ycl.service.user.IUserService;
 
 /**
@@ -89,23 +91,38 @@ public class LoginController extends BaseController {
                 logger.info(
                     String.format("对用户[%s]进行登录验证..验证未通过,未知账户", cLoginId));
                 redirectAttributes.addFlashAttribute("message", "未知账户");
+                return getErrorMap("用户名或密码错误");
             } catch (IncorrectCredentialsException ice) {
                 logger.info(
                     String.format("对用户[%s]进行登录验证..验证未通过,错误的凭证", cLoginId));
                 redirectAttributes.addFlashAttribute("message", "密码不正确");
+                return getErrorMap("用户名或密码错误");
             } catch (LockedAccountException lae) {
                 logger.info(
                     String.format("对用户[%s]进行登录验证..验证未通过,账户已锁定", cLoginId));
                 redirectAttributes.addFlashAttribute("message", "账户已锁定");
+                return getErrorMap("账户已锁定");
+            } catch (DisabledAccountException dae) {
+                logger.info(
+                    String.format("对用户[%s]进行登录验证..验证未通过,禁用账户", cLoginId));
+                redirectAttributes.addFlashAttribute("message", "禁用账户");
+                return getErrorMap("禁用账户");
+            } catch (UserStateException use) {
+                logger.info(
+                    String.format("对用户[%s]进行登录验证..验证未通过,账户未审批", cLoginId));
+                redirectAttributes.addFlashAttribute("message", "账户未审批");
+                return getErrorMap("账户未审批");
             } catch (ExcessiveAttemptsException eae) {
                 logger.info(
                     String.format("对用户[%s]进行登录验证..验证未通过,错误次数过多", cLoginId));
                 redirectAttributes.addFlashAttribute("message", "用户名或密码错误次数过多");
+                return getErrorMap("用户名或密码错误次数过多");
             } catch (AuthenticationException ae) {
                 //通过处理Shiro的运行时AuthenticationException就可以控制用户登录失败或密码错误时的情景  
                 logger.info(
                     String.format("对用户[%s]进行登录验证..验证未通过,堆栈轨迹如下", cLoginId));
                 redirectAttributes.addFlashAttribute("message", "用户名或密码不正确");
+                return getErrorMap("用户名或密码错误");
             }
 
             //验证是否登录成功  

@@ -87,12 +87,12 @@ public class CommonConstants {
 
     /** 用户状态 */
     public static enum UserState {
-        /** 未认证 1 */
-        UNAUTHORIZED(1),
-        /** 正常 2 */
-        NORMAL(2),
-        /** 锁定 3 */
-        LOCK(3);
+        /** 未认证 0 */
+        UNAUTHORIZED(0),
+        /** 正常 1 */
+        NORMAL(1),
+        /** 锁定 2 */
+        LOCK(2);
 
         private final int value;
 

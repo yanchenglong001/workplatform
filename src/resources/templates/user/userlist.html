@@ -24,34 +24,43 @@
     rel="stylesheet" />
 </head>
 <body>
+    <div th:include="nav :: nav('system_manage','user_manage','')">
+    </div>
     <div>
         <form class="form-inline" role="form">
             <div class="form-group">
-                <label class="control-label" for="cName">名称</label> <input
+                <label class="control-label" for="cName">名称：</label> <input
                     type="text" class="form-control" id="cName">
             </div>
             <div class="form-group">
-                <label class="control-label" for="cLoginId">登录名称</label>
+                <label class="control-label" for="cLoginId">登录名称：</label>
                 <input type="text" class="form-control" id="cLoginId">
             </div>
             <div class="form-group" id="divState">
-                <label class="control-label">状态</label>
-                <div class="form-control">
-                    <label class="radio-inline"> <input
+                <label class="control-label">状态：</label>
+                
+                <div class="checkbox">
+                    <label class="radio-inline"> 
+                        <input
                         type="checkbox" name="nState" id="nState0"
                         value="0"> 未认证
-                    </label> <label class="radio-inline"> <input
+                    </label> 
+                    <label class="radio-inline"> 
+                        <input
                         type="checkbox" name="nState" id="nState1"
                         value="1"> 正常
-                    </label> <label class="radio-inline"> <input
+                    </label> 
+                    <label class="radio-inline"> 
+                        <input
                         type="checkbox" name="nState" id="nState2"
                         value="2"> 锁定
                     </label>
                 </div>
+                
             </div>
             <div class="form-group" id="divValid">
-                <label class="control-label">有效</label>
-                <div class="form-control">
+                <label class="control-label">有效：</label>
+                <div class="checkbox">
                     <label class="radio-inline"> <input
                         type="checkbox" name="nValid" id="nValid1"
                         value="1"> 有效
@@ -104,5 +113,10 @@
             <li><a href="#">&raquo;</a></li>
         </ul>
     </div>
+    
+    <script src="../../mystatic/js/require/require.min.js"
+ th:src="@{/mystatic/js/require/require.min.js}" 
+ th:attr="data-main=@{/mystatic/js/user/userlist.js}"></script>
+    
 </body>
 </html>

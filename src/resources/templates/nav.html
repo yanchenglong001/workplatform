@@ -1,0 +1,20 @@
+<div th:fragment="nav (nav_one,nav_two,nav_three)">
+     <!-- 系统管理 -->
+    <ol class="breadcrumb" th:if="${nav_one eq 'system_manage'}">
+        <!-- 系统管理 -->
+        <!-- <li><a href="javascript:void(0);" th:text="系统管理" th:attr="id='nav_system_manage'">系统管理</a></li> -->
+        <li th:if="${nav_two eq 'user_manage' and nav_three eq '' }" th:text="用户管理" class="active">用户管理
+        </li>
+        <li th:if="${nav_two eq 'user_manage' and nav_three ne '' }">
+            <a href="javascript:void(0);" th:text="用户管理" th:attr="id='nav_user_manage'" th:text="用户管理">用户管理</a>
+        </li>
+        <li th:if="${nav_three eq 'nav_userlist'}" class="active" th:text="用户">用户</li>
+    </ol>
+    <!-- 业务管理 -->
+    <ol class="breadcrumb" th:if="${nav_one eq 'business_manage'}">
+        <!-- 业务管理 -->
+        <!-- <li><a href="javascript:void(0);" th:text="业务管理">业务管理</a></li> -->
+        
+    </ol>
+   
+</div>

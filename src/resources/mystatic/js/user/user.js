@@ -7,6 +7,7 @@
             "messenger":"../../messenger/js/messenger",
             "global":"../global",
             "config":"../config",
+            "nav":"../nav",
             "common":"../common"
             
         },
@@ -19,8 +20,11 @@
             }
         }
     });
-    require(['jquery','messenger','common','config'],function($,messenger,common,config){
-        
+    
+    require(['jquery','messenger','common','config','nav'],function($,messenger,common,config,nav){
+        // 初始化页面导航
+        nav.init();
+        // 
         function init(){
             
             if($("#method").val()=="register"){
@@ -56,7 +60,7 @@
             
             $.ajax({
                 type : config.methodPost,
-                url : config.url.userUrl,
+                url : config.url.operUserUrl,
                 data : {
                     "cLoginId" : $("#cLoginId").val(),
                     "cPassword" : $("#cPassword").val(),
@@ -71,7 +75,9 @@
                         showMsg(data.msg,"error");
                         return;
                     }
-                    
+                    // 设置获取焦点时清除错误消息
+                    clearErrCss($(".user-container input"));
+                    showMsg("操作成功","info");
                 },
                 error : function(data, textStatus, errorThrown) {
                     showMsg(textStatus,"error");

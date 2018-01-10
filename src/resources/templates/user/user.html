@@ -34,15 +34,20 @@
   <link href="../../mystatic/css/user/user.css" 
    th:href="@{/mystatic/css/user/user.css}"
    rel="stylesheet" />
+   
+   <!--[if lt IE 9]>
+       <script src="../../mystatic/bootstarp/js/html5shiv.js"
+        th:src="@{/mystatic/bootstarp/js/html5shiv.js}"></script>
+       <script src="../../mystatic/bootstarp/js/respond.js"
+        th:src="@{/mystatic/bootstarp/js/respond.js}"></script>
+     <![endif]-->
+   
 </head>
 <body>
-<div>
-    <ol class="breadcrumb">
-        <li><a href="javascript:void(0);" th:text="系统管理">系统管理</a></li>
-        <li><a href="javascript:void(0);" th:text="用户管理">用户管理</a></li>
-        <li class="active">编辑用户</a></li>
-    </ol>
+
+<div th:include="nav :: nav('system_manage','user_manage','nav_userlist')">
 </div>
+
 <div class="user-container">
 <form class="form-horizontal" role="form" th:object="${user}">
 

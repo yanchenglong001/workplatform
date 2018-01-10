@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.DisabledAccountException;
+import org.apache.shiro.authc.LockedAccountException;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -14,6 +16,9 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 
 import com.ycl.bean.manager.user.TUser;
+import com.ycl.common.constants.CommonConstants.NValid;
+import com.ycl.common.constants.CommonConstants.UserState;
+import com.ycl.common.exception.UserStateException;
 import com.ycl.service.user.IUserService;
 
 /**
@@ -46,6 +51,24 @@ public class UserRealm extends AuthorizingRealm {
         if (user == null) {
             throw new UnknownAccountException();//没找到帐号
         }
+        // 判断账号是否禁用
+        if (user.getnValid() == null
+                || NValid.VALID.getValue() != user.getnValid().intValue()) {
+            throw new DisabledAccountException();// 禁用账号
+        }
+        // 判断账号是否审批通过
+        if (user.getnState() == null) {
+            throw new UserStateException("账号未审批");// 账号是否审批通过
+        }
+        // 判断账号是否审批通过
+        if (UserState.UNAUTHORIZED.getValue() == user.getnState().intValue()) {
+            throw new UserStateException("账号未审批");// 账号是否审批通过
+        }
+        // 账号锁定
+        if (UserState.LOCK.getValue() == user.getnState().intValue()) {
+            throw new LockedAccountException();// 账号锁定
+        }
+        //        AuthenticationException
         //交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getcLoginId(), //用户名
