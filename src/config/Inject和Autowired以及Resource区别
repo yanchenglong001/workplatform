@@ -1,0 +1,58 @@
+1、@Inject
+
+javax.inject
+JSR330 (Dependency Injection for Java)
+这是jsr330中的规范，通过‘AutowiredAnnotationBeanPostProcessor’ 类实现的依赖注入。
+
+1.1、@Inject使用
+
+如下是@Inject的使用，不加@Named注解，需要配置与变量名一致即可。
+
+    @Inject
+    @Named("mongo")
+    private Mongo mongo;
+
+2、@Autowired
+
+org.springframework.bean.factory
+Spring
+@Autowired是Spring提供的注解，通过‘AutowiredAnnotationBeanPostProcessor’ 类实现的依赖注入，与@inject二者具有可互换性。
+
+2.1 @Autowired的使用
+
+@Autowired有个属性为required，可以配置为false，如果配置为false之后，当没有找到相应bean的时候，系统不会抛错。
+
+    @Autowired
+    private MongoTemplate mongoTemplate;
+    
+    
+3、@Resource
+
+javax.annotation
+JSR250 (Common Annotations for Java) 
+这是jsr250规范的实现，‘@Resource’通过 ‘CommonAnnotationBeanPostProcessor’ 类实现依赖注入。
+3.1@Resource的使用
+
+@Resource一般会指定一个name属性，如下：
+
+    @Resource(name = "userMapper")
+    private UserMapper userMapper;
+    
+4、三个注解的相异之处
+
+@Autowired和@Inject基本是一样的，因为两者都是使用AutowiredAnnotationBeanPostProcessor来处理依赖注入。但是@Resource是个例外，它使用的是CommonAnnotationBeanPostProcessor来处理依赖注入。当然，两者都是BeanPostProcessor。
+
+@Autowired和@Inject
+默认 autowired by type
+可以 通过@Qualifier 显式指定 autowired by qualifier name。
+
+@Resource
+
+默认 autowired by field name
+如果 autowired by field name失败，会退化为 autowired by type
+可以 通过@Qualifier 显式指定 autowired by qualifier name
+如果 autowired by qualifier name失败，会退化为 autowired by field name。但是这时候如果 autowired by field name失败，就不会再退化为autowired by type了。
+
+5、总结
+
+个人在使用上，更偏重使用@Inject，这是jsr330规范的实现，而@Autowired是spring的实现，如果不用spring一般用不上这个，而@Resource则是jsr250的实现，这是多年前的规范。

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>用户</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <!-- 
+ telephone=no就禁止了把数字转化为拨号链接,telephone=yes就开启了把数字转化为拨号链接
+ 这个meta就不用写了,在默认是情况下就是开启！
+ meta name="format-detection" content="telephone=no"
+ email=no禁止作为邮箱地址,email=yes就开启了把文字默认为邮箱地址
+ meta name="format-detection" content="email=no"
+ adress=no禁止跳转至地图,adress=yes就开启了点击地址直接跳转至地图的功能,在默认是情况下就是开启
+ meta name="format-detection" content="adress=no" 
+  -->
+ <meta name="format-detection" content="telephone=no"/>
+ <!-- 去掉winphone系统a、input标签被点击时产生的半透明灰色背景 -->
+ <meta name="msapplication-tap-highlight" content="no" />
+<link href="../../mystatic/css/base.css" 
+   th:href="@{/mystatic/css/base.css}"
+   rel="stylesheet"/>
+ <!-- Loading Bootstrap -->
+  <link href="../../mystatic/bootstrap/css/bootstrap.min.css" rel="stylesheet"
+    th:href="@{/mystatic/bootstrap/css/bootstrap.min.css}"
+  />
+<!-- Loading messenger UI -->
+ <link href="../../mystatic/messenger/css/messenger.css" 
+    th:href="@{/mystatic/messenger/css/messenger.css}"
+    rel="stylesheet" />
+ <link href="../../mystatic/messenger/css/messenger-theme-future.css" 
+    th:href="@{/mystatic/messenger/css/messenger-theme-future.css}"
+    rel="stylesheet" />
+    
+  <link href="../../mystatic/css/user/user.css" 
+   th:href="@{/mystatic/css/user/user.css}"
+   rel="stylesheet" />
+</head>
+<body>
+<div>
+    <ol class="breadcrumb">
+        <li><a href="javascript:void(0);" th:text="系统管理">系统管理</a></li>
+        <li><a href="javascript:void(0);" th:text="用户管理">用户管理</a></li>
+        <li class="active">编辑用户</a></li>
+    </ol>
+</div>
+<div class="user-container">
+<form class="form-horizontal" role="form" th:object="${user}">
+
+    <div class="form-group">
+        <label class="col-sm-2 control-label">登录名</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" placeholder="登录名" th:field="*{cLoginId}" id="cLoginId" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">用户名</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="text" placeholder="用户名" th:field="*{cName}" id="cName" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">密码</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="password" placeholder="密码" th:field="*{cPassword}" id="cPassword" />
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-2 control-label">确认密码</label>
+        <div class="col-sm-10">
+            <input class="form-control" type="password" placeholder="确认密码" value="" id="confirmPassword" />
+        </div>
+    </div>
+    <div class="form-group" id="divState">
+        <label class="col-sm-2 control-label">状态</label>
+        <div class="col-sm-10">
+            <label class="radio-inline">
+                <input type="radio" name="nState" id="nState0" value="0" 
+                    th:checked="*{nState}==null?true:(*{nState}==0?true:false)" > 未认证
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="nState" id="nState1"  value="1" th:checked="*{nState}==1?true:false"> 正常
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="nState" id="nState2"  value="2" th:checked="*{nState}==2?true:false"> 锁定
+            </label>
+        </div>
+    </div>
+    <div class="form-group" id="divValid">
+        <label class="col-sm-2 control-label">有效</label>
+        <div class="col-sm-10">
+            <label class="radio-inline">
+                <input type="radio" name="nValid" id="nValid1" value="1" th:checked="*{nValid}==null?true:(*{nValid}==1?true:false)" > 有效
+            </label>
+            <label class="radio-inline">
+                <input type="radio" name="nValid" id="nValid0"  value="0" th:checked="*{nValid}==0?true:false"> 无效
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12" style="text-align: right;">
+            <a href="javascript:void(0);" class="btn btn-primary btn-lg" id="btnConfirm" role="button">确认</a>
+            <a href="javascript:void(0);" class="btn btn-default  btn-lg" id="btnReset" role="button">重置</a>
+            <input type="hidden" id="method" th:value="${method}" />
+            <input type="hidden" id="userId" th:value="*{cId}" />
+        </div>
+    </div>
+
+</form>
+</div>
+
+<!-- <script src="../../mystatic/js/jquery-1.7.2.js"
+ th:src="@{/mystatic/js/jquery-1.7.2.js}"></script>
+<script src="../../mystatic/bootstrap/js/bootstrap.min.js"
+ th:src="@{/mystatic/bootstrap/js/bootstrap.min.js}">
+</script> 
+../mystatic/js/user/user.js
+-->
+<script src="../../mystatic/js/require/require.min.js"
+ th:src="@{/mystatic/js/require/require.min.js}" 
+ th:attr="data-main=@{/mystatic/js/user/user.js}"></script>
+</body>
+</html>

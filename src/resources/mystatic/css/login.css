@@ -1,0 +1,40 @@
+body{
+    background-color: #f0f0f0;
+}
+
+.login-container{
+   background-color: #ffffff;
+   width:400px;
+   height: 300px;
+   position: absolute;
+   left:50%;/*配合margin-left的负值实现水平居中*/
+   margin-left:-200px;/*值的大小等于元素宽度的一半*/
+   top:50%;/*配合margin-top的负值实现垂直居中*/
+   margin-top: -150px;/*值的大小等于元素高度的一半*/
+}
+
+
+@media screen and (min-width:1200px){
+
+}
+@media screen and (min-width: 960px) and (max-width: 1199px) { 
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 959px) {
+
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px){ 
+
+}
+@media only screen and (max-width: 479px) {
+    .login-container{
+       width:300px;
+       margin-left:-150px;/*值的大小等于元素宽度的一半*/
+    }
+}
+
+.loginform{
+    padding:12px 26px 12px;
+}

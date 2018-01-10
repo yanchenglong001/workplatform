@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ycl.mapper.user.UserMapper">
+    <resultMap type="com.ycl.bean.manager.user.TUser" id="userMap">
+        <!-- 主键 -->
+        <id property="cId" column="C_ID" jdbcType="CHAR" />
+        <!-- 姓名 -->
+        <result property="cName" column="C_NAME" jdbcType="CHAR" />
+        <!-- 密码 -->
+        <result property="cPassword" column="C_PASSWORD" jdbcType="CHAR" />
+        <!-- 登录名 -->
+        <result property="cLoginId" column="C_LOGIN_ID" jdbcType="VARCHAR" />
+        <!-- 盐值 -->
+        <result property="cSalt" column="C_SALT" jdbcType="VARCHAR" />
+        <!-- 状态（0：创建未认证；1：正常状态；2：用户被锁定） -->
+        <result property="nState" column="N_STATE" jdbcType="INTEGER" />
+        <!-- 有效（1：有效；2：无效） -->
+        <result property="nValid" column="N_VALID" jdbcType="INTEGER" />
+        <!-- 创建人 -->
+        <result property="cCreateUser" column="C_CREATE_USER" jdbcType="VARCHAR" />
+        <!-- 创建时间 -->
+        <result property="dCreateDate" column="D_CREATE_DATE" jdbcType="TIMESTAMP" />
+        <!-- 更新人 -->
+        <result property="cUpdateUser" column="C_UPDATE_USER" jdbcType="VARCHAR" />
+        <!-- 更新时间 -->
+        <result property="dUpdateDate" column="D_UPDATE_DATE" jdbcType="TIMESTAMP" />
+    </resultMap>
+</mapper>

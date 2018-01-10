@@ -1,0 +1,4 @@
+使用require.js的data-main属性使用
+<script src="../../mystatic/js/require/require.min.js"
+ th:src="@{/mystatic/js/require/require.min.js}" 
+ th:attr="data-main=@{/mystatic/js/user/user.js}"></script>

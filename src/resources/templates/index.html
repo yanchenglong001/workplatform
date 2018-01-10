@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>首页</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <!-- 
+ telephone=no就禁止了把数字转化为拨号链接,telephone=yes就开启了把数字转化为拨号链接
+ 这个meta就不用写了,在默认是情况下就是开启！
+ meta name="format-detection" content="telephone=no"
+ email=no禁止作为邮箱地址,email=yes就开启了把文字默认为邮箱地址
+ meta name="format-detection" content="email=no"
+ adress=no禁止跳转至地图,adress=yes就开启了点击地址直接跳转至地图的功能,在默认是情况下就是开启
+ meta name="format-detection" content="adress=no" 
+  -->
+ <meta name="format-detection" content="telephone=no"/>
+ <!-- 去掉winphone系统a、input标签被点击时产生的半透明灰色背景 -->
+ <meta name="msapplication-tap-highlight" content="no" />
+ 
+ <link href="../mystatic/css/base.css" 
+   th:href="@{/mystatic/css/base.css}"
+   rel="stylesheet"/>
+   <link href="../mystatic/css/index.css" 
+   th:href="@{/mystatic/css/index.css}"
+   rel="stylesheet"/>
+ <!-- Loading Bootstrap -->
+ <link href="../mystatic/flatui/css/vendor/bootstrap/css/bootstrap.min.css" 
+    th:href="@{/mystatic/flatui/css/vendor/bootstrap/css/bootstrap.min.css}"
+    rel="stylesheet" />
+
+ <!-- Loading messenger UI -->
+ <link href="../mystatic/messenger/css/messenger.css" 
+    th:href="@{/mystatic/messenger/css/messenger.css}"
+    rel="stylesheet" />
+ <link href="../mystatic/messenger/css/messenger-theme-future.css" 
+    th:href="@{/mystatic/messenger/css/messenger-theme-future.css}"
+    rel="stylesheet" />
+ <!-- Loading responsive-nav UI -->
+ <link href="../mystatic/responsivenav/css/responsive-nav.css" 
+    th:href="@{/mystatic/responsivenav/css/responsive-nav.css}"
+    rel="stylesheet" />
+<style type="text/css">
+
+@media screen and (min-width:1200px){
+
+}
+@media screen and (min-width: 960px) and (max-width: 1199px) { 
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 959px) {
+
+}
+
+@media only screen and (min-width: 480px) and (max-width: 767px){ 
+
+}
+@media only screen and (max-width: 479px) {
+ 
+}
+
+
+</style>
+
+
+</head>
+<body>
+
+<div class="main-container">
+    <header id="mainHeader">欢迎，
+        <a href="javascript:void(0);" id="btnUser"><span th:text="${user.cName==''?user.cLoginId:user.cName}"></span></a> 
+        <a href="javascript:void(0);" th:text="注销" id="btnLogout" ></a>
+        <div id="app">  <span v-bind:title="message">    鼠标悬停几秒钟查看此处动态绑定的提示信息！  </span></div>
+    </header>
+    <div id="mainMenu" th:include="mainmenu :: mainmenu" >
+        
+    </div>
+    <div id="mainContainer">
+        <iframe th:src="@{/user/showuser}" id="mainFrame" frameborder="no" border="0" marginwidth="0" marginheight="0"  ></iframe>
+    </div>
+    <footer id="mainFooter">Copy right ycl company</footer>
+</div>
+<script src="../mystatic/js/require/require.min.js" data-main="../mystatic/js/index.js"></script>
+
+</body>
+</html>

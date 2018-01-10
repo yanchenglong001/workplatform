@@ -1,0 +1,51 @@
+<div th:fragment="mainmenu">
+
+<nav class="navbar navbar-default" role="navigation">
+    <div class="container-fluid"> 
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse"
+                data-target="#example-navbar-collapse">
+            <span class="sr-only">切换导航</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="javascript:void(0);">工作管理系统</a>
+    </div>
+    <div class="collapse navbar-collapse" id="example-navbar-collapse">
+        <ul class="nav navbar-nav">
+            <li class="active"><a href="javascript:void(0);" th:text="首页" id="btnMenuMain">首页</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" >
+                    <span th:text="系统管理"></span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu" >
+                    <li><a href="javascript:void(0);" id="btnMenuUser" th:text="用户管理"></a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:void(0);" id="btnMenuAuth" th:text="权限管理"></a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:void(0);" id="btnMenuRole" th:text="角色管理"></a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:void(0);" id="btnMenuOrg" th:text="组织机构管理"></a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" >
+                    <span th:text="业务管理"></span> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="javascript:void(0);">jmeter</a></li>
+                    <li><a href="javascript:void(0);">EJB</a></li>
+                    <li><a href="javascript:void(0);">Jasper Report</a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:void(0);">分离的链接</a></li>
+                    <li class="divider"></li>
+                    <li><a href="javascript:void(0);">另一个分离的链接</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    </div>
+</nav>
+
+</div>

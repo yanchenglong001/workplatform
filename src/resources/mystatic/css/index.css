@@ -1,0 +1,24 @@
+.main-container{
+    margin: 0px;
+    padding: 0px;
+    width:100%;
+    height: 100%;
+}
+#mainHeader{
+    height: 10%;
+}
+#mainMenu{
+    height: 5%;
+}
+#mainContainer{
+    height: 80%;
+}
+#mainFooter{
+    height: 5%;
+}
+
+#mainFrame{
+    width:100%;
+    height: 100%;
+    
+}

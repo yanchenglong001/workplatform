@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>登录</title>
+ <meta name="viewport" content="width=device-width, initial-scale=1"/>
+ <!-- 
+ telephone=no就禁止了把数字转化为拨号链接,telephone=yes就开启了把数字转化为拨号链接
+ 这个meta就不用写了,在默认是情况下就是开启！
+ meta name="format-detection" content="telephone=no"
+ email=no禁止作为邮箱地址,email=yes就开启了把文字默认为邮箱地址
+ meta name="format-detection" content="email=no"
+ adress=no禁止跳转至地图,adress=yes就开启了点击地址直接跳转至地图的功能,在默认是情况下就是开启
+ meta name="format-detection" content="adress=no" 
+  -->
+ <meta name="format-detection" content="telephone=no"/>
+ <!-- 去掉winphone系统a、input标签被点击时产生的半透明灰色背景 -->
+ <meta name="msapplication-tap-highlight" content="no" />
+ 
+ <link href="../css/base.css" 
+   th:href="@{/css/base.css}"
+   rel="stylesheet"/>
+ <!-- Loading Bootstrap -->
+ <link href="../flatui/css/vendor/bootstrap/css/bootstrap.min.css" 
+    th:href="@{/flatui/css/vendor/bootstrap/css/bootstrap.min.css}"
+    rel="stylesheet" />
+ <!-- Loading Flat UI -->
+ <link href="../flatui/css/flat-ui.css" 
+    th:href="@{/flatui/css/flat-ui.css}"
+    rel="stylesheet" />
+ 
+<style type="text/css">
+
+
+.login-container{
+    /* margin: 0 auto; */
+    max-height:400px;
+    max-width:500px;
+    min-height: 300px;
+    min-width: 300px;
+    position: absolute;
+    left:50%;
+    margin-left: -150px;
+    top: 50%;
+    margin-top: -150px;
+}
+</style>
+
+<script type="text/javascript">
+
+var xmlhttp;
+function loadXMLDoc(url){
+    xmlhttp=null;
+    if (window.XMLHttpRequest){// code for all new browsers
+      xmlhttp=new XMLHttpRequest();
+      }
+    else if (window.ActiveXObject){// code for IE5 and IE6
+      xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    if (xmlhttp!=null){
+      xmlhttp.onreadystatechange=state_Change;
+      xmlhttp.open("GET",url,true);
+      xmlhttp.send(null);
+    }else{
+        alert("Your browser does not support XMLHTTP.");
+    }
+}
+
+function state_Change(){
+    //alert(xmlhttp.readyState);
+    if (xmlhttp.readyState==4){// 4 = "loaded"
+            alert(xmlhttp.status);
+       if (xmlhttp.status==200){// 200 = OK
+            // ...our code here...
+            alert(xmlhttp.responseText);
+       }else{
+            alert("Problem retrieving XML data");
+       }
+     }
+}
+//loadXMLDoc("http://localhost:8099/workplatform/ajaxtest?username=aaa&amp;passwd=123");
+
+</script>
+
+</head>
+<body>
+
+<div class="login-container">
+    <div class="login-form">
+        <form id="loginForm" th:action="@{/workplatform/login}" th:object="${user}" method="post">
+            <header>用户登录</header>
+            <div class="form-group">
+                <input type="text" class="form-control login-field" th:field="*{cUserName}" 
+                placeholder="用户名" id="login-name"/>
+                <label class="login-field-icon fui-user" for="login-name"></label>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control login-field" th:field="*{cPassword}" 
+                id="login-pass"/>
+                <label class="login-field-icon fui-lock" for="login-pass"></label>
+            </div>
+            <div>
+                <a class="btn btn-primary btn-lg btn-block" href="javascript:(0);">登录</a>
+                <a class="login-link" href="#">忘记密码</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="../flatui/js/vendor/jquery.min.js"
+ th:src="@{/flatui/js/vendor/jquery.min.js}"></script>
+<script src="../flatui/js/vendor/video.js"
+ th:src="@{/flatui/js/vendor/video.js}"></script>
+<script src="../flatui/js/flat-ui.min.js"
+ th:src="@{/flatui/js/flat-ui.min.js}"></script>
+</body>
+</html>
